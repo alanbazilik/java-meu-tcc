@@ -14,7 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import View.marca;
+import static View.marca.id_marca;
+
 
 
 /**
@@ -29,7 +30,6 @@ public class marca extends javax.swing.JFrame {
     ResultSet rsfunc;
    marca objmar;
        public static int id_marca;
-   
     String opcao;
      public static boolean button;
      int a = 1;
@@ -37,6 +37,7 @@ public class marca extends javax.swing.JFrame {
     public marca() {
          
         initComponents();
+       
          desativarBotoes();
          utilitarios u = new utilitarios();
     u.inserirIcone(this);
@@ -53,9 +54,6 @@ public class marca extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tela_princial = new javax.swing.JLabel();
-        produtos = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         buscardados = new javax.swing.JButton();
         cradastrar = new javax.swing.JButton();
@@ -64,13 +62,13 @@ public class marca extends javax.swing.JFrame {
         salvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbmarca = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        produtos = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusCycleRoot(false);
-        setMaximumSize(new java.awt.Dimension(469, 287));
         setMinimumSize(new java.awt.Dimension(469, 287));
-        setPreferredSize(new java.awt.Dimension(469, 287));
         setSize(new java.awt.Dimension(469, 287));
         getContentPane().setLayout(null);
 
@@ -80,14 +78,6 @@ public class marca extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tela cadastro marca");
 
-        tela_princial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-reserva-64.png"))); // NOI18N
-        tela_princial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tela_princial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tela_princialMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,35 +85,17 @@ public class marca extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(148, 148, 148)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tela_princial)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addContainerGap(403, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(tela_princial, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4))
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29))
         );
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(-10, 0, 813, 59);
-
-        produtos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                produtosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(produtos);
-        produtos.setBounds(0, 100, 170, 30);
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Marca:");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 70, 150, 25);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "açoês"));
 
@@ -230,6 +202,20 @@ public class marca extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(170, 60, 300, 230);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Marca:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 100, 150, 25);
+
+        produtos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                produtosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(produtos);
+        produtos.setBounds(0, 130, 170, 30);
+
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thumb2-program-code-black-backgrounds-programming-background-with-program-code-code.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 60, 350, 230);
@@ -237,17 +223,6 @@ public class marca extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(485, 326));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tela_princialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tela_princialMouseClicked
-        // TODO add your handling code here:
-        Tela_principal objtel = new Tela_principal();
-        objtel.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_tela_princialMouseClicked
-
-    private void produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_produtosActionPerformed
 
     private void cradastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cradastrarActionPerformed
         // TODO add your handling code here:  
@@ -264,16 +239,17 @@ public class marca extends javax.swing.JFrame {
 
     private void Alterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alterar1ActionPerformed
         // TODO add your handling code here:
-      opcao="Alterar";
+       Alterarmarca();
+        pesquisarMarca();
+         limparCampos();
     }//GEN-LAST:event_Alterar1ActionPerformed
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         // TODO add your handling code here:
         if(opcao.equals("Inserir")){
           Inserirmarca();
+           pesquisarMarca();
           limparCampos();
-        }else if(opcao.equals("Alterar")){
-         Alterarmarca();
         }
      desativarBotoes();
     }//GEN-LAST:event_salvarActionPerformed
@@ -290,6 +266,7 @@ public class marca extends javax.swing.JFrame {
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
             Excluirmarca();
+             pesquisarMarca();
             limparCampos();
         }
     }//GEN-LAST:event_excluirActionPerformed
@@ -317,7 +294,7 @@ public class marca extends javax.swing.JFrame {
             
            
             this.produtos.setText((String) tbmarca.getValueAt(linha, 1));
-        
+            id_marca = (int) tbmarca.getValueAt(linha, 0);
             opcao="Alterar";
             ativarBotoes();
         
@@ -327,6 +304,10 @@ public class marca extends javax.swing.JFrame {
                     
            // this.dispose();
     }//GEN-LAST:event_tbmarcaKeyPressed
+
+    private void produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_produtosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -430,9 +411,13 @@ public class marca extends javax.swing.JFrame {
     }
   public void Alterarmarca()
     {
+        int linha = tbmarca.getSelectedRow();
+        
         marcaCTR objcli = new marcaCTR();
         
-        objcli.AlteramarcaCTR(produtos.getText());
+        objcli.AlteramarcaCTR(produtos.getText(),id_marca);
+       
+        
     }      
   
   public void preenche_item()
@@ -471,9 +456,10 @@ public class marca extends javax.swing.JFrame {
     }
       public void Excluirmarca()
     {
+        int linha = tbmarca.getSelectedRow();
+        
         marcaCTR objcli = new marcaCTR();
-    
-
+        
         objcli.ExcluimarcaCTR(id_marca);
         
     }
@@ -484,14 +470,13 @@ public class marca extends javax.swing.JFrame {
     private javax.swing.JButton cradastrar;
     private javax.swing.JButton excluir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField produtos;
     private javax.swing.JButton salvar;
     public javax.swing.JTable tbmarca;
-    private javax.swing.JLabel tela_princial;
     // End of variables declaration//GEN-END:variables
 }

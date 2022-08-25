@@ -17,57 +17,47 @@ public class tipoCTR {
      public void InseremarcaCTR(String tipo_produto)
     {
         // Cria um objeto da MODEL
-        tipoModel objmarca = new tipoModel();
+        tipoModel objtipo = new tipoModel();
         //Envia por meio de SET o valor de nome
    
-        objmarca.setTipo(tipo_produto);
+        objtipo.setTipo(tipo_produto);
 
         
         //Declara objeto da DAO
         tipoDAO objdao = new tipoDAO();
         //Utiliza método insere e parametro MODEL
-        objdao.inseretipo(objmarca);
+        objdao.inseretipo(objtipo);
                 
     }
-    /*   public void AlteramarcaCTR(String marca)
+ 
+       public void AlteramarcaCTR(String tipo,int id_tipo)
     {
         // Cria um objeto da MODEL
-        tipoModel objmarca = new tipoModel();
+       tipoModel objtipo = new tipoModel();
         //Envia por meio de SET o valor de nome
-        objmarca.setMarca_produto(marca);
+        objtipo.setTipo(tipo);
+          objtipo.setCod_tipo(id_tipo);
+       
+   
 
         //Declara objeto da DAO
-        marca_DAO objdao = new marca_DAO();
+        tipoDAO objdao = new tipoDAO();
         //Utiliza método insere e parametro MODEL
-        objdao.AlteraFuncionario(objmarca);
+        objdao.Alteramarca(objtipo);
     }
   
      
     
-      public void ExcluimarcaCTR(int id_marca)
+      public void ExcluimarcaCTR(int id_tipo)
      {
-         tipoModel objfunc = new tipoModel();
+         tipoModel objtipo = new tipoModel();
          
-         objfunc.setCod_marca_produto(id_marca);
          
-         marca_DAO objdao = new marca_DAO();
-         objdao.Excluirmarca(objfunc);
+         objtipo.setCod_tipo(id_tipo);
+         
+         tipoDAO objdao = new tipoDAO();
+         objdao.Excluirmarca(objtipo);
      }
-    
-    
-    
-    
-  /*  public ResultSet PesquisarmarcaCTR(String marca)
-    {
-        marca_DAO objfunc = new marca_DAO();
-         marca_model objmarca = new marca_model();
-        
-        objmarca.setMarca_produto(marca);
-        
-        return objfunc.Pesquisarmarca(objmarca);
-    } 
-
-       */
        
        
     public ResultSet PesquisartipoCTR(String nome)

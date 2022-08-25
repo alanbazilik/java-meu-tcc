@@ -10,7 +10,7 @@ package Model;
  * @author User
  */
 public class marca_model {
-   private boolean status_marca;
+  
     private int cod_marca_produto;
   private String marca_produto;
     public String getMarca_produto() {
@@ -41,14 +41,5 @@ public class marca_model {
     /**
      * @return the status_marca
      */
-    public boolean getStatus_marca() {
-        return status_marca;
-    }
 
-    /**
-     * @param status_marca the status_marca to set
-     */
-    public void setStatus_marca(boolean status_marca) {
-        this.status_marca = status_marca;
-    }
 }

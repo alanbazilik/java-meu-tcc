@@ -13,6 +13,7 @@ import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Alanbazilio
@@ -26,13 +27,14 @@ public class tipo extends javax.swing.JFrame {
      */
     ResultSet rsfunc;
    marca objmar;
-       public static int id_marca;
+       public static int id_tipo;
    
     String opcao;
      public static boolean button;
      int a = 1;
     public tipo() {
         initComponents();
+              
         desativarBotoes();
         utilitarios u = new utilitarios();
     u.inserirIcone(this);
@@ -49,7 +51,6 @@ public class tipo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tela_princial = new javax.swing.JLabel();
         produtos = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -64,10 +65,10 @@ public class tipo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusCycleRoot(false);
-        setMaximumSize(new java.awt.Dimension(560, 239));
-        setMinimumSize(new java.awt.Dimension(560, 239));
-        setPreferredSize(new java.awt.Dimension(560, 239));
-        setSize(new java.awt.Dimension(560, 239));
+        setMaximumSize(new java.awt.Dimension(432, 240));
+        setMinimumSize(new java.awt.Dimension(432, 240));
+        setPreferredSize(new java.awt.Dimension(432, 240));
+        setSize(new java.awt.Dimension(432, 240));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -76,32 +77,20 @@ public class tipo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tela cadastro Tipo  do produto");
 
-        tela_princial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-reserva-64.png"))); // NOI18N
-        tela_princial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tela_princial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tela_princialMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tela_princial)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addContainerGap(376, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(tela_princial, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -113,7 +102,7 @@ public class tipo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(produtos);
-        produtos.setBounds(0, 90, 170, 30);
+        produtos.setBounds(0, 90, 120, 30);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,6 +121,7 @@ public class tipo extends javax.swing.JFrame {
         });
 
         buscardados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
+        buscardados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         buscardados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscardadosActionPerformed(evt);
@@ -168,17 +158,16 @@ public class tipo extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cradastrar)
+                    .addComponent(Alterar1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(excluir)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(cradastrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(salvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(Alterar1))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(buscardados)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(excluir)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscardados, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -187,16 +176,16 @@ public class tipo extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cradastrar)
                     .addComponent(salvar)
-                    .addComponent(Alterar1))
+                    .addComponent(buscardados, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscardados)
-                    .addComponent(excluir))
-                .addGap(0, 11, Short.MAX_VALUE))
+                    .addComponent(excluir)
+                    .addComponent(Alterar1))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(0, 120, 170, 120);
+        jPanel3.setBounds(0, 120, 150, 120);
 
         tbtipo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         tbtipo.setModel(new javax.swing.table.DefaultTableModel(
@@ -210,25 +199,28 @@ public class tipo extends javax.swing.JFrame {
 
             }
         ));
+        tbtipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbtipoMouseClicked(evt);
+            }
+        });
+        tbtipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbtipoKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbtipo);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(170, 60, 390, 180);
+        jScrollPane1.setBounds(150, 60, 280, 180);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thumb2-program-code-black-backgrounds-programming-background-with-program-code-code.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
         jLabel4.setBounds(0, 60, 340, 180);
 
-        setSize(new java.awt.Dimension(576, 278));
+        setSize(new java.awt.Dimension(448, 279));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tela_princialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tela_princialMouseClicked
-        // TODO add your handling code here:
-        Tela_principal objtel = new Tela_principal();
-        objtel.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_tela_princialMouseClicked
 
     private void produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosActionPerformed
         // TODO add your handling code here:
@@ -249,12 +241,15 @@ public class tipo extends javax.swing.JFrame {
 
     private void Alterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Alterar1ActionPerformed
         // TODO add your handling code here:
-        opcao="Alterar";
+         Alterarmarca();
+           pesquisarMarca();
+           desativarBotoes();
+         
     }//GEN-LAST:event_Alterar1ActionPerformed
 
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
         // TODO add your handling code here:
-     /*   String [] options = new String[] {"Sim","Não"};
+        String [] options = new String[] {"Sim","Não"};
 
         Object ret = JOptionPane.showOptionDialog
         (null, "Tem certeza que deseja excluir: "
@@ -263,22 +258,55 @@ public class tipo extends javax.swing.JFrame {
 
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
-            //Excluirmarca();
+            Excluirmarca();
+              pesquisarMarca();
             limparCampos();
-        }*/
+        }
     }//GEN-LAST:event_excluirActionPerformed
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         // TODO add your handling code here:
        if(opcao.equals("Inserir")){
        Inserirmarca();
+         pesquisarMarca();
        limparCampos();
-       }else if(opcao.equals("Alterar")){
-       Alterarmarca();
-       }
         desativarBotoes();
     }//GEN-LAST:event_salvarActionPerformed
+    }
+    private void tbtipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbtipoKeyPressed
+        // TODO add your handling code here:
+              int linha = tbtipo.getSelectedRow();
+            
+           
+            this.produtos.setText((String) tbtipo.getValueAt(linha, 1));
+            id_tipo = (int) tbtipo.getValueAt(linha, 0);
+            opcao="Alterar";
+            ativarBotoes();
+        
+            
+           //marca.button = 
+           //(boolean) tbmarca.getValueAt(linha, 0);
+                    
+           // this.dispose();
+    }//GEN-LAST:event_tbtipoKeyPressed
 
+    private void tbtipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbtipoMouseClicked
+        // TODO add your handling code here:
+             if(evt.getClickCount() == 2)
+        {
+            int linha = tbtipo.getSelectedRow();
+            
+       
+            this.produtos.setText((String) tbtipo.getValueAt(linha, 0));
+           
+            
+            tipo.button = 
+           (boolean) tbtipo.getValueAt(linha, 0);
+                    
+            this.dispose();
+        }
+    }//GEN-LAST:event_tbtipoMouseClicked
+    
     /**
      * @param args the command line arguments
      */
@@ -410,11 +438,15 @@ public class tipo extends javax.swing.JFrame {
     }
  public void Alterarmarca()
     {
-       /*  marcaCTR objcli = new marcaCTR();
+        int linha = tbtipo.getSelectedRow();
         
-        objcli.AlteramarcaCTR(produtos.getText());
-        */ 
-    }     
+        tipoCTR objcli = new tipoCTR();
+        
+        objcli.AlteramarcaCTR(produtos.getText(),id_tipo);
+       
+        
+    }      
+     
   
   public void preenche_item()
     {
@@ -450,14 +482,16 @@ public class tipo extends javax.swing.JFrame {
         
          
     }
-     /* public void Excluirmarca()
+    public void Excluirmarca()
     {
-        tipoCTR objcli = new tipoCTR();
-    
-
-        objcli.
+        int linha = tbtipo.getSelectedRow();
         
-    }*/
+       tipoCTR objcli = new tipoCTR();
+        
+        objcli.ExcluimarcaCTR(id_tipo);
+        
+    }
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar1;
     public javax.swing.JButton buscardados;
@@ -472,6 +506,5 @@ public class tipo extends javax.swing.JFrame {
     private javax.swing.JTextField produtos;
     private javax.swing.JButton salvar;
     private javax.swing.JTable tbtipo;
-    private javax.swing.JLabel tela_princial;
     // End of variables declaration//GEN-END:variables
 }

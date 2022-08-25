@@ -29,17 +29,20 @@ public class marcaCTR {
         objdao.insereMarca(objmarca);
                 
     }
-       public void AlteramarcaCTR(String marca)
+       public void AlteramarcaCTR(String marca,int id_marca)
     {
         // Cria um objeto da MODEL
         marca_model objmarca = new marca_model();
         //Envia por meio de SET o valor de nome
         objmarca.setMarca_produto(marca);
+          objmarca.setCod_marca_produto(id_marca);
+       
+   
 
         //Declara objeto da DAO
         marca_DAO objdao = new marca_DAO();
         //Utiliza método insere e parametro MODEL
-        objdao.AlteraFuncionario(objmarca);
+        objdao.Alteramarca(objmarca);
     }
   
      
@@ -47,6 +50,7 @@ public class marcaCTR {
       public void ExcluimarcaCTR(int id_marca)
      {
          marca_model objfunc = new marca_model();
+         
          
          objfunc.setCod_marca_produto(id_marca);
          

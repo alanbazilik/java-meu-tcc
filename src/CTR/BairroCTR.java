@@ -26,33 +26,35 @@ public class BairroCTR {
         objdao.inserebairro(objbairro);
                 
     }
-      /* public void AlteramarcaCTR(String marca)
+         public void AlterabairroCTR(String bairro,int id_bairro)
     {
         // Cria um objeto da MODEL
-       bairroModel objbairro = new bairroModel();
+        bairroModel objmarca = new bairroModel();
         //Envia por meio de SET o valor de nome
-        objmarca.setMarca_produto(marca);
+        objmarca.setBairros(bairro);
+          objmarca.setCodbairro(id_bairro);
+       
+   
 
         //Declara objeto da DAO
-        marca_DAO objdao = new marca_DAO();
+        BairroDAO objdao = new  BairroDAO();
         //Utiliza método insere e parametro MODEL
-        objdao.AlteraFuncionario(objmarca);
+        objdao.Alterabairro(objmarca);
     }
   
      
     
-      public void ExcluimarcaCTR(int id_marca)
+      public void ExcluiBairroCTR(int id_bairro)
      {
-         marca_model objfunc = new marca_model();
+        bairroModel objfunc = new bairroModel();
          
-         objfunc.setCod_marca_produto(id_marca);
          
-         marca_DAO objdao = new marca_DAO();
-         objdao.Excluirmarca(objfunc);
+         objfunc.setCodbairro(id_bairro);
+         
+         BairroDAO objdao = new BairroDAO();
+         objdao.Excluirbairro(objfunc);
      }
     
-    
-    */
     
   /*/  public ResultSet PesquisarmarcaCTR(String marca)
     {

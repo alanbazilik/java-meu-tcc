@@ -20,7 +20,7 @@ public class ConexaoDAO {
 
     private String caminho = "jdbc:postgresql://localhost:5432/";
     private String usuario = "postgres";
-    private String senha = "info@1234";
+    private String senha = "unifunec";
     private Connection con = null;
     private String bancoPrincipal = "estoque";
 

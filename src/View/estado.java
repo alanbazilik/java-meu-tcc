@@ -4,7 +4,17 @@
  */
 package View;
 
+import View.estado;
+import CTR.EstadoCTR;
 import Sistemas_login.utilitarios;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -15,10 +25,19 @@ public class estado extends javax.swing.JFrame {
     /**
      * Creates new form cidade
      */
+       ResultSet rsfunc;
+   estado objestado;
+       public static int id_estado;
+   
+    String opcao;
+     public static boolean button;
+     int a = 1;
     public estado() {
-        initComponents();
-         utilitarios u = new utilitarios();
-    u.inserirIcone(this);
+          initComponents();
+          
+        desativarBotoes();
+        utilitarios u = new utilitarios();
+        u.inserirIcone(this);
     }
 
     /**
@@ -32,25 +51,24 @@ public class estado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tela_princial = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         estados = new javax.swing.JTextField();
-        jSplitPane2 = new javax.swing.JSplitPane();
-        excluir = new javax.swing.JButton();
-        Alterar = new javax.swing.JButton();
-        jSplitPane1 = new javax.swing.JSplitPane();
-        cradastrar = new javax.swing.JButton();
-        salvar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        cradastrar1 = new javax.swing.JButton();
+        alterar1 = new javax.swing.JButton();
+        salvar1 = new javax.swing.JButton();
+        excluir1 = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtestado = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusCycleRoot(false);
-        setMaximumSize(new java.awt.Dimension(650, 315));
-        setMinimumSize(new java.awt.Dimension(650, 315));
-        setPreferredSize(new java.awt.Dimension(650, 315));
-        setSize(new java.awt.Dimension(650, 315));
+        setMaximumSize(new java.awt.Dimension(521, 229));
+        setMinimumSize(new java.awt.Dimension(521, 229));
+        setPreferredSize(new java.awt.Dimension(521, 229));
+        setSize(new java.awt.Dimension(521, 229));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -59,14 +77,6 @@ public class estado extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tela cadastro estado");
 
-        tela_princial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-reserva-64.png"))); // NOI18N
-        tela_princial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tela_princial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tela_princialMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,17 +84,13 @@ public class estado extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
-                .addComponent(tela_princial)
-                .addGap(188, 188, 188))
+                .addContainerGap(467, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(tela_princial, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4))
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29))
         );
 
         getContentPane().add(jPanel1);
@@ -94,7 +100,7 @@ public class estado extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Estado:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(0, 100, 100, 25);
+        jLabel2.setBounds(30, 60, 100, 25);
 
         estados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,60 +108,203 @@ public class estado extends javax.swing.JFrame {
             }
         });
         getContentPane().add(estados);
-        estados.setBounds(80, 100, 160, 22);
+        estados.setBounds(0, 90, 210, 30);
 
-        excluir.setText("desativar");
-        jSplitPane2.setLeftComponent(excluir);
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED), "ações"));
 
-        Alterar.setText("Alterar");
-        jSplitPane2.setRightComponent(Alterar);
+        cradastrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/addition.png"))); // NOI18N
+        cradastrar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        cradastrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cradastrar1ActionPerformed(evt);
+            }
+        });
 
-        getContentPane().add(jSplitPane2);
-        jSplitPane2.setBounds(10, 230, 180, 49);
+        alterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar (1).png"))); // NOI18N
+        alterar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        alterar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterar1ActionPerformed(evt);
+            }
+        });
 
-        cradastrar.setText("cradastrar");
-        jSplitPane1.setLeftComponent(cradastrar);
+        salvar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
+        salvar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        salvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvar1ActionPerformed(evt);
+            }
+        });
 
-        salvar.setText("salvar");
-        jSplitPane1.setRightComponent(salvar);
+        excluir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
+        excluir1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        excluir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluir1ActionPerformed(evt);
+            }
+        });
 
-        getContentPane().add(jSplitPane1);
-        jSplitPane1.setBounds(10, 180, 180, 51);
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
+        buscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(alterar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(excluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(cradastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(salvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(buscar)
+                        .addGap(20, 20, 20))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cradastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(alterar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(excluir1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(10, 140, 190, 120);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thumb2-program-code-black-backgrounds-programming-background-with-program-code-code.jpg"))); // NOI18N
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 60, 340, 240);
+        jLabel4.setBounds(0, 60, 210, 210);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtestado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        jtestado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jtestado.setMaximumSize(new java.awt.Dimension(60, 64));
+        jtestado.setPreferredSize(new java.awt.Dimension(60, 64));
+        jtestado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtestadoMouseClicked(evt);
+            }
+        });
+        jtestado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtestadoKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jtestado);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(340, 60, 300, 240);
+        jScrollPane1.setBounds(210, 60, 310, 210);
 
-        setSize(new java.awt.Dimension(645, 308));
+        setSize(new java.awt.Dimension(537, 308));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tela_princialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tela_princialMouseClicked
-        // TODO add your handling code here:
-        Tela_principal objtel = new Tela_principal();
-        objtel.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_tela_princialMouseClicked
 
     private void estadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_estadosActionPerformed
+
+    private void cradastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cradastrar1ActionPerformed
+          ativarBotoes();
+        limparCampos();
+        opcao = "Inserir";
+        button = true;
+    }//GEN-LAST:event_cradastrar1ActionPerformed
+
+    private void salvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvar1ActionPerformed
+           if(opcao.equals("Inserir")){
+       Inserirestado();
+       pesquisarestado();
+       pesquisarestado();
+       limparCampos();
+       }
+        desativarBotoes();
+    }//GEN-LAST:event_salvar1ActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        // TODO add your handling code here:
+         pesquisarestado();
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void alterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterar1ActionPerformed
+        // TODO add your handling code here:
+        Alterarestado();
+        pesquisarestado();
+        pesquisarestado();
+    }//GEN-LAST:event_alterar1ActionPerformed
+
+    private void excluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluir1ActionPerformed
+        // TODO add your handling code here:
+          String [] options = new String[] {"Sim","Não"};
+
+        Object ret = JOptionPane.showOptionDialog
+        (null, "Tem certeza que deseja excluir: "
+            + estados.getText() + "?","AVISO", JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+
+        if(options[Integer.valueOf(ret.toString())].equals("Sim"))
+        {
+            Excluirestado();
+            pesquisarestado();
+            pesquisarestado();
+            limparCampos();
+        }
+    }//GEN-LAST:event_excluir1ActionPerformed
+
+    private void jtestadoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtestadoKeyPressed
+        // TODO add your handling code here:
+         int linha = jtestado.getSelectedRow();
+            
+           
+            this.estados.setText((String) jtestado.getValueAt(linha, 1));
+            id_estado = (int) jtestado.getValueAt(linha, 0);
+            opcao="Alterar";
+            ativarBotoes();
+    }//GEN-LAST:event_jtestadoKeyPressed
+
+    private void jtestadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtestadoMouseClicked
+                   if(evt.getClickCount() == 2)
+        {
+            int linha = jtestado.getSelectedRow();
+            
+       
+            this.estados.setText((String) jtestado.getValueAt(linha, 0));
+           
+            
+            estado.button = 
+           (boolean) jtestado.getValueAt(linha, 0);
+                    
+            this.dispose();
+        }
+        
+    }//GEN-LAST:event_jtestadoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,21 +341,102 @@ public class estado extends javax.swing.JFrame {
             }
         });
     }
-
+ public void desativarBotoes()
+    {
+        salvar1.setEnabled(false);
+        estados.setEnabled(false);
+    }
+    
+    public void ativarBotoes()
+    {
+        salvar1.setEnabled(true);
+        estados.setEnabled(true);
+    }
+    
+ public void Inserirestado()
+    {
+          EstadoCTR objcli = new EstadoCTR();
+        objcli.InsereestadoCTR(estados.getText());
+    }
+  public void limparCampos()
+    {
+    estados.setText("");
+    }
+  
+  public void pesquisarestado()
+    {
+         EstadoCTR objcli = new EstadoCTR();
+        rsfunc = objcli.PesquisarestadoCTR(estados.getText());
+        
+        preenche_item();
+        
+    }
+ public void Alterarestado()
+    {
+      
+        int linha = jtestado.getSelectedRow();
+        
+        EstadoCTR objcli = new EstadoCTR();
+        
+        objcli.AlteraestadoCTR(estados.getText(),id_estado);
+    }     
+  
+  public void preenche_item()
+    {
+     String [] colunas = {"Codigo","Nome"};
+        
+        String [][] linhas ={};
+        
+        DefaultTableModel tablemodel = new DefaultTableModel(linhas,colunas)
+        {
+            public boolean CelulaEditavel(int rowIndex, int mColIndex)
+            {
+                return true;
+            }
+        };
+        
+        Vector <Vector> dados = new Vector();
+        
+        try {
+            while(rsfunc.next())
+            {
+                Vector regVetor = new Vector();
+                
+                regVetor.add(rsfunc.getInt("codestado"));
+                regVetor.add(rsfunc.getString("nome_estado"));
+                dados.add(regVetor);
+                tablemodel.addRow(regVetor);
+            }
+            jtestado.setModel(tablemodel);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(estado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         
+    }
+     public void Excluirestado()
+    {
+      int linha = jtestado.getSelectedRow();
+        
+        EstadoCTR objcli = new EstadoCTR();
+        
+        objcli.ExcluiestadoCTR(id_estado);
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Alterar;
-    private javax.swing.JButton cradastrar;
+    private javax.swing.JButton alterar1;
+    private javax.swing.JButton buscar;
+    private javax.swing.JButton cradastrar1;
     private javax.swing.JTextField estados;
-    private javax.swing.JButton excluir;
+    private javax.swing.JButton excluir1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JButton salvar;
-    private javax.swing.JLabel tela_princial;
+    private javax.swing.JTable jtestado;
+    private javax.swing.JButton salvar1;
     // End of variables declaration//GEN-END:variables
 }

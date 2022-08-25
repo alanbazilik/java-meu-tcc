@@ -32,7 +32,7 @@ public class marca_DAO {
         
         String sql = "insert into marca"
                 + "(marca_produto)"
-                + " values (?)";
+                + " values (upper(?))";
         
         try {
             pgsql = con.prepareStatement(sql);
@@ -49,22 +49,24 @@ public class marca_DAO {
         
         
     }
-    public void AlteraFuncionario(marca_model gs)
+    public void Alteramarca(marca_model gs)
     {
         ConexaoDAO cb = new ConexaoDAO();
         con = cb.conectaPostgre();
         
-        String sql = "update marca set "
-                + "marca_produto = ?";
+        String sql = "UPDATE marca SET "
+                + "marca_produto = ? "
+                + "WHERE cod_marca_produto = ?";
         
         try {
             pgsql = con.prepareStatement(sql);
             pgsql.setString(1, gs.getMarca_produto());
-
+            pgsql.setInt(2, gs.getCod_marca_produto());
             
-            pgsql.executeUpdate();
+            int rowsUpdated = pgsql.executeUpdate();
+            if (rowsUpdated > 0) {
             JOptionPane.showMessageDialog(null, "A marca foi alterado com sucesso");
-            
+            }
         } catch (SQLException ex) {
             Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -76,7 +78,7 @@ public class marca_DAO {
         ConexaoDAO cb = new ConexaoDAO();
         con = cb.conectaPostgre();
         
-        String sql = "delete from marca where"
+        String sql ="delete from marca where"
                 + " cod_marca_produto = ?";
         
         try {
@@ -115,6 +117,8 @@ public class marca_DAO {
         return rs;
         
     }
+
+  
     
     
     

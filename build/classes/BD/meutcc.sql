@@ -1,5 +1,4 @@
-/* meutcc: */
-create database estoque;
+﻿create database estoque;
 
 CREATE TABLE usuario(
 	codusuario serial primary key,
@@ -17,20 +16,20 @@ CREATE TABLE funcionario (
     fk_cidade INTEGER,
     fk_codtelefone integer,
     fk_codrua integer,
-    numerocasa varchar(10) not null,
-    UNIQUE ( rg, cpf)
+    numerocasa varchar(10) not null
+
 );
 
 CREATE TABLE estado (
     codestado serial PRIMARY KEY,
-    nome_estado VARCHAR(80) not null unique UNIQUE
+    nome_estado VARCHAR(80) not null
 );
 
 CREATE TABLE cidade (
     codcidade serial PRIMARY KEY,
     nomecidade varchar(80) not null,
-    fk_uf INTEGER,
-    UNIQUE (nomecidade, codcidade)
+    fk_uf INTEGER
+   
 );
 
 CREATE TABLE bairro (
@@ -48,13 +47,12 @@ CREATE TABLE produto (
 
 CREATE TABLE marca (
     cod_marca_produto serial PRIMARY KEY,
-    marca_produto VARCHAR(80) not null,
-	status_marca VARCHAR(80)
+    marca_produto VARCHAR(80) not null
 );
 
 CREATE TABLE tipos (
     cod_tipo_produto serial PRIMARY KEY,
-     tipo VARCHAR(80) not null,
+     tipo VARCHAR(80) not null
 );
 
 CREATE TABLE Cliente (
@@ -71,20 +69,20 @@ CREATE TABLE Cliente (
 
 CREATE TABLE Tipo_Telefone (
     codtipotel serial PRIMARY KEY,
-    nometipotel varchar(80) not null unique,
-    UNIQUE (codtipotel, nometipotel)
+    nometipotel varchar(80) not null
+
 );
 
 CREATE TABLE Rua (
     codrua serial PRIMARY KEY UNIQUE,
-    nomerua varchar(80) not null unique
+    nomerua varchar(80) not null 
 );
 
 CREATE TABLE Telefone (
     codtelefone serial PRIMARY KEY,
-    numerotel varchar(20) not null unique,
-    fk_codtipotel integer,
-    UNIQUE (codtelefone, numerotel)
+    numerotel varchar(20) not null,
+    fk_codtipotel integer
+    
 );
 
 CREATE TABLE Venda (

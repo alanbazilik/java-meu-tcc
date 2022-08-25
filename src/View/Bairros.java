@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,6 +32,7 @@ public class Bairros extends javax.swing.JFrame {
      int a = 1;
     public Bairros() {
         initComponents();
+        
         desativarBotoes();
         utilitarios u = new utilitarios();
         u.inserirIcone(this);
@@ -47,7 +49,6 @@ public class Bairros extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        tela_princial = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bairro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -69,14 +70,6 @@ public class Bairros extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tela cadastro Bairro");
 
-        tela_princial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-reserva-64.png"))); // NOI18N
-        tela_princial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        tela_princial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tela_princialMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,17 +77,13 @@ public class Bairros extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(tela_princial)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(tela_princial, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 59));
@@ -114,7 +103,7 @@ public class Bairros extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "açoês"));
 
         cradastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/addition.png"))); // NOI18N
-        cradastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        cradastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         cradastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cradastrarActionPerformed(evt);
@@ -122,7 +111,7 @@ public class Bairros extends javax.swing.JFrame {
         });
 
         salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
-        salvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        salvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salvarActionPerformed(evt);
@@ -130,7 +119,7 @@ public class Bairros extends javax.swing.JFrame {
         });
 
         alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar (1).png"))); // NOI18N
-        alterar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        alterar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         alterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alterarActionPerformed(evt);
@@ -138,7 +127,7 @@ public class Bairros extends javax.swing.JFrame {
         });
 
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 excluirActionPerformed(evt);
@@ -146,7 +135,7 @@ public class Bairros extends javax.swing.JFrame {
         });
 
         pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
-        pesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pesquisarActionPerformed(evt);
@@ -201,6 +190,16 @@ public class Bairros extends javax.swing.JFrame {
 
             }
         ));
+        jtbairro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtbairroMouseClicked(evt);
+            }
+        });
+        jtbairro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtbairroKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtbairro);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 320, 210));
@@ -211,13 +210,6 @@ public class Bairros extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(493, 308));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tela_princialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tela_princialMouseClicked
-        // TODO add your handling code here:
-        Tela_principal objtel = new Tela_principal();
-        objtel.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_tela_princialMouseClicked
 
     private void bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bairroActionPerformed
         // TODO add your handling code here:
@@ -235,9 +227,8 @@ public class Bairros extends javax.swing.JFrame {
         // TODO add your handling code here:
          if(opcao.equals("Inserir")){
        Inserirmarca();
+       pesquisarbairro();
        limparCampos();
-       }else if(opcao.equals("Alterar")){
-       Alterarmarca();
        }
         desativarBotoes();
     }//GEN-LAST:event_salvarActionPerformed
@@ -245,29 +236,60 @@ public class Bairros extends javax.swing.JFrame {
     private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
         // TODO add your handling code here:
            // TODO add your handling code here:
-     /*   String [] options = new String[] {"Sim","Não"};
+        String [] options = new String[] {"Sim","Não"};
 
         Object ret = JOptionPane.showOptionDialog
         (null, "Tem certeza que deseja excluir: "
-            + produtos.getText() + "?","AVISO", JOptionPane.YES_NO_OPTION,
+            + bairro.getText() + "?","AVISO", JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
-            //Excluirmarca();
+            Excluirmarca();
+            pesquisarbairro();
             limparCampos();
-        }*/
+        }
     }//GEN-LAST:event_excluirActionPerformed
 
     private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
         // TODO add your handling code here:
-        opcao="Alterar";
+        Alterarmarca();
+        pesquisarbairro();
+       limparCampos();
     }//GEN-LAST:event_alterarActionPerformed
 
     private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
         // TODO add your handling code here:
         pesquisarbairro();
     }//GEN-LAST:event_pesquisarActionPerformed
+
+    private void jtbairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtbairroKeyPressed
+        // TODO add your handling code here:
+              int linha = jtbairro.getSelectedRow();
+            
+           
+            this.bairro.setText((String) jtbairro.getValueAt(linha, 1));
+            id_bairro = (int) jtbairro.getValueAt(linha, 0);
+            opcao="Alterar";
+            ativarBotoes();
+    }//GEN-LAST:event_jtbairroKeyPressed
+
+    private void jtbairroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbairroMouseClicked
+        // TODO add your handling code here:
+            if(evt.getClickCount() == 2)
+        {
+            int linha = jtbairro.getSelectedRow();
+            
+       
+            this.bairro.setText((String) jtbairro.getValueAt(linha, 0));
+           
+            
+            Bairros.button = 
+           (boolean) jtbairro.getValueAt(linha, 0);
+                    
+            this.dispose();
+        }
+    }//GEN-LAST:event_jtbairroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -336,10 +358,12 @@ public class Bairros extends javax.swing.JFrame {
     }
  public void Alterarmarca()
     {
-       /*  marcaCTR objcli = new marcaCTR();
+      
+        int linha = jtbairro.getSelectedRow();
         
-        objcli.AlteramarcaCTR(produtos.getText());
-        */ 
+        BairroCTR objcli = new BairroCTR();
+        
+        objcli.AlterabairroCTR(bairro.getText(),id_bairro);
     }     
   
   public void preenche_item()
@@ -376,14 +400,15 @@ public class Bairros extends javax.swing.JFrame {
         
          
     }
-     /* public void Excluirmarca()
+     public void Excluirmarca()
     {
-        tipoCTR objcli = new tipoCTR();
-    
-
-        objcli.
+      int linha = jtbairro.getSelectedRow();
         
-    }*/
+        BairroCTR objcli = new BairroCTR();
+        
+        objcli.ExcluiBairroCTR(id_bairro);
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterar;
     private javax.swing.JTextField bairro;
@@ -398,6 +423,5 @@ public class Bairros extends javax.swing.JFrame {
     private javax.swing.JTable jtbairro;
     private javax.swing.JButton pesquisar;
     private javax.swing.JButton salvar;
-    private javax.swing.JLabel tela_princial;
     // End of variables declaration//GEN-END:variables
 }

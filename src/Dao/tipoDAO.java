@@ -30,7 +30,7 @@ public class tipoDAO {
         
         String sql = "insert into tipos"
                 + "(tipo)"
-                + " values (?)";
+                + " values (upper(?))";
         
         try {
             pgsql = con.prepareStatement(sql);
@@ -47,22 +47,24 @@ public class tipoDAO {
         
         
     }
-   /* public void AlteraFuncionario(tipoModel gs)
+  public void Alteramarca(tipoModel gs)
     {
         ConexaoDAO cb = new ConexaoDAO();
         con = cb.conectaPostgre();
         
-        String sql = "update marca set "
-                + "marca_produto = ?";
+        String sql = "UPDATE tipos SET "
+                + " tipo = ? "
+                + "WHERE  cod_tipo_produto = ?";
         
         try {
             pgsql = con.prepareStatement(sql);
-            pgsql.setString(1, gs.getMarca_produto());
-
+            pgsql.setString(1, gs.getTipo());
+            pgsql.setInt(2, gs.getCod_tipo());
             
-            pgsql.executeUpdate();
+            int rowsUpdated = pgsql.executeUpdate();
+            if (rowsUpdated > 0) {
             JOptionPane.showMessageDialog(null, "A marca foi alterado com sucesso");
-            
+            }
         } catch (SQLException ex) {
             Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -74,12 +76,12 @@ public class tipoDAO {
         ConexaoDAO cb = new ConexaoDAO();
         con = cb.conectaPostgre();
         
-        String sql = "delete from marca where"
-                + " cod_marca_produto = ?";
+        String sql ="delete from tipos where"
+                + "  cod_tipo_produto = ?";
         
         try {
             pgsql = con.prepareStatement(sql);
-            pgsql.setInt(1, gs.getCod_marca_produto());
+            pgsql.setInt(1, gs.getCod_tipo());
             pgsql.executeUpdate();
             JOptionPane.showMessageDialog(null, "marca foi Excluído com Sucesso");
             
@@ -87,7 +89,6 @@ public class tipoDAO {
             Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    */
     
      public ResultSet Pesquisartipo(String tipo)
     {

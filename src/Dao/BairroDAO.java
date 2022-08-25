@@ -29,7 +29,7 @@ public class BairroDAO {
         
         String sql = "insert into bairro"
                 + "(bairro)"
-                + " values (?)";
+                + " values (upper(?))";
         
         try {
             pgsql = con.prepareStatement(sql);
@@ -41,39 +41,41 @@ public class BairroDAO {
             JOptionPane.showMessageDialog(null, "Bairro foi  Cadastrado com Sucesso");
             
         } catch (SQLException ex) {
-            Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
     }
-    public void AlteraFuncionario(bairroModel gs)
+ public void Alterabairro(bairroModel gs)
     {
         ConexaoDAO cb = new ConexaoDAO();
         con = cb.conectaPostgre();
         
-        String sql = "update bairro set "
-                + "bairro = ?";
+        String sql = "UPDATE bairro SET "
+                + "bairro = ? "
+                + "WHERE codbairro = ?";
         
         try {
             pgsql = con.prepareStatement(sql);
             pgsql.setString(1, gs.getBairros());
-
+            pgsql.setInt(2, gs.getCodbairro());
             
-            pgsql.executeUpdate();
-            JOptionPane.showMessageDialog(null, "A Bairro foi alterado com sucesso");
-            
+            int rowsUpdated = pgsql.executeUpdate();
+            if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(null, "A bairro foi alterado com sucesso");
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
  
     
-  public void Excluirmarca(bairroModel gs)
+  public void Excluirbairro(bairroModel gs)
     {
         ConexaoDAO cb = new ConexaoDAO();
         con = cb.conectaPostgre();
         
-        String sql = "delete from bairro where"
+        String sql ="delete from bairro where"
                 + " codbairro = ?";
         
         try {
@@ -83,7 +85,7 @@ public class BairroDAO {
             JOptionPane.showMessageDialog(null, "bairro foi Excluído com Sucesso");
             
         } catch (SQLException ex) {
-            Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -107,7 +109,7 @@ public class BairroDAO {
             rs = st.executeQuery(pgsql.toString());
             
         } catch (SQLException ex) {
-            Logger.getLogger(marca_DAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rs;
         
