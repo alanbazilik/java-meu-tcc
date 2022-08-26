@@ -99,21 +99,21 @@ public class tela_recuperar_senha extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(-10, 0, 554, 74);
+        jPanel1.setBounds(-10, 0, 541, 69);
         getContentPane().add(email);
-        email.setBounds(178, 157, 201, 20);
+        email.setBounds(178, 157, 201, 22);
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("E_mail:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(120, 160, 60, 14);
+        jLabel3.setBounds(120, 160, 60, 16);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Telefone:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(120, 190, 60, 14);
+        jLabel4.setBounds(120, 190, 60, 16);
         getContentPane().add(telefone);
-        telefone.setBounds(199, 191, 201, 20);
+        telefone.setBounds(199, 191, 201, 22);
 
         mostar_a_senha.setText("mostar senha ");
         mostar_a_senha.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class tela_recuperar_senha extends javax.swing.JFrame {
             }
         });
         getContentPane().add(mostar_a_senha);
-        mostar_a_senha.setBounds(208, 231, 101, 23);
+        mostar_a_senha.setBounds(208, 231, 104, 22);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thumb2-program-code-black-backgrounds-programming-background-with-program-code-code.jpg"))); // NOI18N
         getContentPane().add(jLabel5);

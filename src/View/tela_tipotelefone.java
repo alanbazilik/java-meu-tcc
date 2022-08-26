@@ -32,7 +32,7 @@ public class tela_tipotelefone extends javax.swing.JFrame {
      int a = 1;
     public tela_tipotelefone() {
         initComponents();
-        
+        pesquisartel();
         desativarBotoes();
         utilitarios u = new utilitarios();
     u.inserirIcone(this);
@@ -62,9 +62,10 @@ public class tela_tipotelefone extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(813, 300));
-        setMinimumSize(new java.awt.Dimension(813, 300));
-        setSize(new java.awt.Dimension(813, 300));
+        setMaximumSize(new java.awt.Dimension(599, 269));
+        setMinimumSize(new java.awt.Dimension(599, 269));
+        setPreferredSize(new java.awt.Dimension(599, 269));
+        setSize(new java.awt.Dimension(599, 269));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -253,7 +254,6 @@ public class tela_tipotelefone extends javax.swing.JFrame {
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
             Excluirtel();
-            pesquisartel();
             limparCampos();
         }
     }//GEN-LAST:event_excluirActionPerformed

@@ -6,13 +6,19 @@ package CTR;
 
 import Dao.TelefoneTipoDAO;
 import Model.TelefoneTipomodel;
+import Model.telefoneModel;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author alang
  */
-public class TelefoneTipoCTR {
+public class TelefoneTipoCTR {    
      public void InseretelCTR(String tipos)
     {
         // Cria um objeto da MODEL

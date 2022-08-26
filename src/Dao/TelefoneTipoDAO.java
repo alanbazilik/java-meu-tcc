@@ -22,7 +22,8 @@ public class TelefoneTipoDAO {
    Connection con;
     PreparedStatement pgsql;
     Statement st;
-    ResultSet rs; 
+    ResultSet rs;
+
     public void inseretipotel(TelefoneTipomodel gs)
     {
         ConexaoDAO cb = new ConexaoDAO();

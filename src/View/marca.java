@@ -37,7 +37,7 @@ public class marca extends javax.swing.JFrame {
     public marca() {
          
         initComponents();
-       
+       pesquisarMarca();
          desativarBotoes();
          utilitarios u = new utilitarios();
     u.inserirIcone(this);
@@ -266,7 +266,6 @@ public class marca extends javax.swing.JFrame {
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
             Excluirmarca();
-             pesquisarMarca();
             limparCampos();
         }
     }//GEN-LAST:event_excluirActionPerformed

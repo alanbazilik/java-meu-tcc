@@ -34,7 +34,7 @@ public class estado extends javax.swing.JFrame {
      int a = 1;
     public estado() {
           initComponents();
-          
+         pesquisarestado(); 
         desativarBotoes();
         utilitarios u = new utilitarios();
         u.inserirIcone(this);
@@ -272,8 +272,6 @@ public class estado extends javax.swing.JFrame {
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
             Excluirestado();
-            pesquisarestado();
-            pesquisarestado();
             limparCampos();
         }
     }//GEN-LAST:event_excluir1ActionPerformed

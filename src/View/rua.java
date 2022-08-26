@@ -34,7 +34,7 @@ public class rua extends javax.swing.JFrame {
     public rua() {
         
         initComponents();
-               
+         pesquisarrua();       
          desativarBotoes();
          utilitarios u = new utilitarios();
     u.inserirIcone(this);
@@ -262,7 +262,6 @@ public class rua extends javax.swing.JFrame {
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
             Excluirua();
-             pesquisarrua();
             limparCampos();
         }
     }//GEN-LAST:event_ExcluirActionPerformed

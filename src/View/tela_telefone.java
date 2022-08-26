@@ -4,7 +4,12 @@
  */
 package View;
 
+import CTR.TelefoneCTR;
+import CTR.TelefoneTipoCTR;
+import Model.TelefoneTipomodel;
+import Model.telefoneModel;
 import Sistemas_login.utilitarios;
+import java.util.List;
 
 /**
  *
@@ -15,8 +20,13 @@ public class tela_telefone extends javax.swing.JFrame {
     /**
      * Creates new form tela_telefone
      */
+    public static int id_tel;
+    String opcao;
+    List<telefoneModel> listtelefone;
+    public static boolean button;
     public tela_telefone() {
         initComponents();
+        carregatelefonecmb();
         utilitarios u = new utilitarios();
     u.inserirIcone(this);
     }
@@ -36,8 +46,8 @@ public class tela_telefone extends javax.swing.JFrame {
         tela_princial = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        telefone = new javax.swing.JTextField();
+        jcomboxtel = new javax.swing.JComboBox<String>();
         jSplitPane1 = new javax.swing.JSplitPane();
         cradastrar = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
@@ -107,19 +117,29 @@ public class tela_telefone extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
         jLabel4.setBounds(10, 110, 160, 25);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        telefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                telefoneActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(180, 110, 160, 20);
+        getContentPane().add(telefone);
+        telefone.setBounds(180, 110, 160, 20);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(230, 150, 120, 20);
+        jcomboxtel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcomboxtel.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcomboxtelItemStateChanged(evt);
+            }
+        });
+        getContentPane().add(jcomboxtel);
+        jcomboxtel.setBounds(230, 150, 120, 20);
 
         cradastrar.setText("cradastrar");
+        cradastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cradastrarActionPerformed(evt);
+            }
+        });
         jSplitPane1.setLeftComponent(cradastrar);
 
         salvar.setText("salvar");
@@ -157,7 +177,7 @@ public class tela_telefone extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(2, 58, 360, 240);
 
-        setSize(new java.awt.Dimension(667, 308));
+        setSize(new java.awt.Dimension(667, 338));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -168,9 +188,17 @@ public class tela_telefone extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_tela_princialMouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void telefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_telefoneActionPerformed
+
+    private void jcomboxtelItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcomboxtelItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcomboxtelItemStateChanged
+
+    private void cradastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cradastrarActionPerformed
+        InserirCliente();
+    }//GEN-LAST:event_cradastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,12 +235,38 @@ public class tela_telefone extends javax.swing.JFrame {
             }
         });
     }
-
+public void carregatelefonecmb()
+    {
+   /*TelefoneCTR objtel = new TelefoneCTR()
+        listtelefone = objtel.ListatelefoneBD
+        (listtelefone.get(jcomboxtel.getSelectedIndex()).getCodtelefone());
+        
+        jcomboxtel.removeAllItems();
+        int i = 0;
+        
+        while(i < listtelefone.size())
+        {
+            jcomboxtel.addItem(listtelefone.get(i).getNumerotel());
+            i++;
+        }
+      */  
+    }
+    
+    
+    
+    
+    
+    public void InserirCliente()
+    {
+        TelefoneCTR objcli = new  TelefoneCTR();
+        
+        objcli.InseretelefoneCTR(telefone.getText(),  
+            listtelefone.get(jcomboxtel.getSelectedIndex()).getCodtelefone());
+    }              
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Alterar;
     private javax.swing.JButton cradastrar;
     private javax.swing.JButton excluir;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -222,9 +276,10 @@ public class tela_telefone extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar8;
+    private javax.swing.JComboBox<String> jcomboxtel;
     private javax.swing.JButton salvar;
     private javax.swing.JLabel tela_princial;
+    private javax.swing.JTextField telefone;
     // End of variables declaration//GEN-END:variables
 }

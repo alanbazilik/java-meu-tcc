@@ -32,7 +32,7 @@ public class Bairros extends javax.swing.JFrame {
      int a = 1;
     public Bairros() {
         initComponents();
-        
+        pesquisarbairro();
         desativarBotoes();
         utilitarios u = new utilitarios();
         u.inserirIcone(this);
@@ -246,8 +246,8 @@ public class Bairros extends javax.swing.JFrame {
         if(options[Integer.valueOf(ret.toString())].equals("Sim"))
         {
             Excluirmarca();
-            pesquisarbairro();
             limparCampos();
+            
         }
     }//GEN-LAST:event_excluirActionPerformed
 
