@@ -1,4 +1,4 @@
-﻿create database estoque;
+create database estoque;
 
 CREATE TABLE usuario(
 	codusuario serial primary key,
@@ -74,7 +74,7 @@ CREATE TABLE Tipo_Telefone (
 );
 
 CREATE TABLE Rua (
-    codrua serial PRIMARY KEY UNIQUE,
+    codrua serial PRIMARY KEY,
     nomerua varchar(80) not null 
 );
 
@@ -86,7 +86,7 @@ CREATE TABLE Telefone (
 );
 
 CREATE TABLE Venda (
-    codvenda serial PRIMARY KEY UNIQUE,
+    codvenda serial PRIMARY KEY,
     datavenda date not null,
     fk_codcliente INTEGER,
     fk_codfuncionario INTEGER
@@ -164,3 +164,12 @@ ALTER TABLE Itens_Venda ADD CONSTRAINT FK_Itens_Venda_1
 ALTER TABLE Itens_Venda ADD CONSTRAINT FK_Itens_Venda_3
     FOREIGN KEY (fk_codvenda)
     REFERENCES Venda (codvenda);
+
+ALTER TABLE Telefone ADD CONSTRAINT FK_Telefone_1
+    FOREIGN KEY (fk_codtipotel)
+    REFERENCES Tipo_Telefone (codtipotel);
+
+/*select T.codtelefone, T.numerotel, TT.nometipotel
+from telefone as T, tipo_telefone as TT
+WHERE T.fk_codtipotel = TT.codtipotel*/
+

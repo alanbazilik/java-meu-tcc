@@ -5,7 +5,10 @@
 package CTR;
 
 import Dao.TelefoneDAO;
+import Dao.TelefoneTipoDAO;
+import Model.TelefoneTipomodel;
 import Model.telefoneModel;
+import Model.tipoModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,20 +22,22 @@ import java.util.logging.Logger;
  * @author alang
  */
 public class TelefoneCTR {
-    public List<telefoneModel> ListatelefoneBD(int fk_codtipotel) {
-        List<telefoneModel> acliente = new ArrayList<>();
-        TelefoneDAO objdao = new TelefoneDAO();
-        ResultSet rstelefone = objdao.listatelefone(fk_codtipotel);
+    
+   public List<TelefoneTipomodel> carregaCombo() {
+        List<TelefoneTipomodel> tipoTelefone = new ArrayList<>();
+        TelefoneTipoDAO objdao = new TelefoneTipoDAO();
+        ResultSet rstipotelefone = objdao.listaTodos();
 
         try {
-            while (rstelefone.next()) {
-                telefoneModel gs = new telefoneModel();
-                gs.setFk_codtipotel(rstelefone.getInt(fk_codtipotel));
+            while (rstipotelefone.next()) {
+                TelefoneTipomodel gs = new TelefoneTipomodel();
+                gs.setCodtipotel(rstipotelefone.getInt("codtipotel"));
+                gs.setNometipotel(rstipotelefone.getString("nometipotel"));
                 
 
-                acliente.add(gs);
+                tipoTelefone.add(gs);
             }
-            return acliente;
+            return tipoTelefone;
 
         } catch (SQLException ex) {
             Logger.getLogger(ClienteCTR.class.getName()).log(Level.SEVERE, null, ex);
@@ -40,19 +45,54 @@ public class TelefoneCTR {
         }
     }
     
-    public void InseretelefoneCTR(String telefone,int id_tipotel)
+    public void InseretelefoneCTR(String telefone,int codtipotel)
     {
         // Cria um objeto da MODEL
         telefoneModel objtelefone = new telefoneModel();
         //Envia por meio de SET o valor de nome
         objtelefone.setNumerotel(telefone);
-        objtelefone.setFk_codtipotel(id_tipotel);
-
-        
+        objtelefone.setFk_codtipotel(codtipotel);
+           System.out.println(""+telefone);
+           System.out.println(""+codtipotel);        
         //Declara objeto da DAO
         TelefoneDAO objdao = new TelefoneDAO();
         //Utiliza método insere e parametro MODEL
-        objdao.inseretelefone(objtelefone);
+        objdao.Inseretelefone(objtelefone);
                 
+    }
+             public void AlteratelCTR(String telefone,int fktelefone,int id_tel)
+    {
+        // Cria um objeto da MODEL
+        telefoneModel objrua = new telefoneModel();
+        //Envia por meio de SET o valor de nome
+        objrua.setNumerotel(telefone);
+          objrua.setFk_codtipotel(fktelefone);
+       objrua.setCodtelefone(id_tel);
+   
+
+        //Declara objeto da DAO
+        TelefoneDAO objdao = new  TelefoneDAO();
+        //Utiliza método insere e parametro MODEL
+        objdao.Alteratipotel(objrua);
+    }
+  
+     
+    
+      public void ExcluitelCTR(int id_telefone)
+     {
+        telefoneModel objfunc = new telefoneModel();
+         
+         
+         objfunc.setCodtelefone(id_telefone);
+         
+         TelefoneDAO objdao = new TelefoneDAO();
+         objdao.Excluitipotel(objfunc);
+     }
+     public ResultSet PesquisartelCTR(String numel)
+    {
+        TelefoneDAO objfunc = new TelefoneDAO();
+        
+        return objfunc.PesquisarTodosTelefone(numel);
+        
     }
 }

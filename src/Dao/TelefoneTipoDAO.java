@@ -24,6 +24,27 @@ public class TelefoneTipoDAO {
     Statement st;
     ResultSet rs;
 
+     public ResultSet listatodos()
+    {
+        ConexaoDAO cb = new ConexaoDAO();
+        con = cb.conectaPostgre();
+        
+        ResultSet rs = null;
+        String sql = "select * from Telefone";
+        
+        try {
+            st = con.createStatement(ResultSet.CONCUR_UPDATABLE,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE);
+            
+           rs = st.executeQuery(sql);
+                       
+        } catch (SQLException ex) {
+            Logger.getLogger(TelefoneTipoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+        
+        
+    }
     public void inseretipotel(TelefoneTipomodel gs)
     {
         ConexaoDAO cb = new ConexaoDAO();
@@ -109,6 +130,29 @@ public class TelefoneTipoDAO {
                                      ResultSet.TYPE_SCROLL_INSENSITIVE);
             
             rs = st.executeQuery(pgsql.toString());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(TelefoneTipoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+        
+    }
+    
+     
+       public ResultSet listaTodos()
+    {
+        ConexaoDAO cb = new ConexaoDAO();
+        con = cb.conectaPostgre();
+       
+        
+        String sql = "select * from Tipo_Telefone";
+        
+        try {
+                        
+            st = con.createStatement(ResultSet.CONCUR_UPDATABLE,
+                                     ResultSet.TYPE_SCROLL_INSENSITIVE);
+            
+            rs = st.executeQuery(sql);
             
         } catch (SQLException ex) {
             Logger.getLogger(TelefoneTipoDAO.class.getName()).log(Level.SEVERE, null, ex);

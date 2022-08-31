@@ -39,7 +39,6 @@ public class Tela_principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -61,8 +60,6 @@ public class Tela_principal extends javax.swing.JFrame {
         itemvendas1 = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
         Sair = new javax.swing.JMenuItem();
-
-        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(448, 340));
@@ -314,7 +311,7 @@ public class Tela_principal extends javax.swing.JFrame {
         // TODO add your handling code here:
        UsuarioLoginVIEW exits = new UsuarioLoginVIEW();
         exits.setVisible(true);
-        this.dispose();
+              this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 
     private void marcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_marcaActionPerformed
@@ -389,7 +386,6 @@ public class Tela_principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem marca;
     private javax.swing.JMenuItem produto;

@@ -32,6 +32,8 @@ public class Bairros extends javax.swing.JFrame {
      int a = 1;
     public Bairros() {
         initComponents();
+        setResizable(false);
+        setFocusable(true);
         pesquisarbairro();
         desativarBotoes();
         utilitarios u = new utilitarios();
@@ -52,16 +54,20 @@ public class Bairros extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         bairro = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        cradastrar = new javax.swing.JButton();
+        cadastrar = new javax.swing.JButton();
         salvar = new javax.swing.JButton();
         alterar = new javax.swing.JButton();
         excluir = new javax.swing.JButton();
-        pesquisar = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbairro = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(459, 269));
+        setMinimumSize(new java.awt.Dimension(459, 269));
+        setPreferredSize(new java.awt.Dimension(459, 269));
+        setSize(new java.awt.Dimension(459, 269));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 255));
@@ -102,16 +108,14 @@ public class Bairros extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED), "açoês"));
 
-        cradastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/addition.png"))); // NOI18N
-        cradastrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        cradastrar.addActionListener(new java.awt.event.ActionListener() {
+        cadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/addition.png"))); // NOI18N
+        cadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cradastrarActionPerformed(evt);
+                cadastrarActionPerformed(evt);
             }
         });
 
         salvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/salvar.png"))); // NOI18N
-        salvar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salvarActionPerformed(evt);
@@ -119,7 +123,6 @@ public class Bairros extends javax.swing.JFrame {
         });
 
         alterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alterar (1).png"))); // NOI18N
-        alterar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         alterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alterarActionPerformed(evt);
@@ -127,18 +130,16 @@ public class Bairros extends javax.swing.JFrame {
         });
 
         excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar (1).png"))); // NOI18N
-        excluir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 excluirActionPerformed(evt);
             }
         });
 
-        pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
-        pesquisar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pesquisar.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lupa.png"))); // NOI18N
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
 
@@ -150,33 +151,32 @@ public class Bairros extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(alterar)
-                        .addGap(18, 18, 18)
-                        .addComponent(pesquisar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(cradastrar)
+                        .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(salvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(excluir)))
-                .addContainerGap())
+                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cradastrar)
-                    .addComponent(excluir)
-                    .addComponent(salvar))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(alterar)
-                    .addComponent(pesquisar))
-                .addGap(0, 5, Short.MAX_VALUE))
+                    .addComponent(alterar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, 120));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, 130));
 
         jtbairro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jtbairro.setModel(new javax.swing.table.DefaultTableModel(
@@ -202,66 +202,18 @@ public class Bairros extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtbairro);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 320, 210));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 310, 220));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/thumb2-program-code-black-backgrounds-programming-background-with-program-code-code.jpg"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 790, 340));
 
-        setSize(new java.awt.Dimension(493, 308));
+        setSize(new java.awt.Dimension(487, 319));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bairroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bairroActionPerformed
-
-    private void cradastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cradastrarActionPerformed
-        // TODO add your handling code here:
-        ativarBotoes();
-        limparCampos();
-        opcao = "Inserir";
-        button = true;
-    }//GEN-LAST:event_cradastrarActionPerformed
-
-    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
-        // TODO add your handling code here:
-         if(opcao.equals("Inserir")){
-       Inserirmarca();
-       pesquisarbairro();
-       limparCampos();
-       }
-        desativarBotoes();
-    }//GEN-LAST:event_salvarActionPerformed
-
-    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
-        // TODO add your handling code here:
-           // TODO add your handling code here:
-        String [] options = new String[] {"Sim","Não"};
-
-        Object ret = JOptionPane.showOptionDialog
-        (null, "Tem certeza que deseja excluir: "
-            + bairro.getText() + "?","AVISO", JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-
-        if(options[Integer.valueOf(ret.toString())].equals("Sim"))
-        {
-            Excluirmarca();
-            limparCampos();
-            
-        }
-    }//GEN-LAST:event_excluirActionPerformed
-
-    private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
-        // TODO add your handling code here:
-        Alterarmarca();
-        pesquisarbairro();
-       limparCampos();
-    }//GEN-LAST:event_alterarActionPerformed
-
-    private void pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarActionPerformed
-        // TODO add your handling code here:
-        pesquisarbairro();
-    }//GEN-LAST:event_pesquisarActionPerformed
 
     private void jtbairroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtbairroKeyPressed
         // TODO add your handling code here:
@@ -290,6 +242,47 @@ public class Bairros extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jtbairroMouseClicked
+
+    private void cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarActionPerformed
+        ativarBotoes();
+        limparCampos();
+         opcao = "Inserir";
+        button = true;
+    }//GEN-LAST:event_cadastrarActionPerformed
+
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        if(opcao.equals("Inserir")){
+          Inserirmarca();
+           pesquisarbairro();
+          limparCampos();
+        }
+     desativarBotoes();
+    }//GEN-LAST:event_salvarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+              pesquisarbairro();
+    }//GEN-LAST:event_buscarActionPerformed
+
+    private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
+        Alterarmarca();
+        pesquisarbairro();
+         limparCampos();
+    }//GEN-LAST:event_alterarActionPerformed
+
+    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+        String [] options = new String[] {"Sim","Não"};
+        
+        Object ret = JOptionPane.showOptionDialog
+    (null, "Tem certeza que deseja excluir: " 
+            + bairro.getText() + "?","AVISO", JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        
+        if(options[Integer.valueOf(ret.toString())].equals("Sim"))
+        {
+            Excluirmarca();
+            limparCampos();
+        }
+    }//GEN-LAST:event_excluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -412,7 +405,8 @@ public class Bairros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alterar;
     private javax.swing.JTextField bairro;
-    private javax.swing.JButton cradastrar;
+    private javax.swing.JButton buscar;
+    private javax.swing.JButton cadastrar;
     private javax.swing.JButton excluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -421,7 +415,6 @@ public class Bairros extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtbairro;
-    private javax.swing.JButton pesquisar;
     private javax.swing.JButton salvar;
     // End of variables declaration//GEN-END:variables
 }

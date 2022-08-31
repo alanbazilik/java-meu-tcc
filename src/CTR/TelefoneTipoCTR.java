@@ -19,6 +19,28 @@ import java.util.logging.Logger;
  * @author alang
  */
 public class TelefoneTipoCTR {    
+     //carregar combo
+    public List<TelefoneTipomodel> carregaCombo() {
+        List<TelefoneTipomodel> tipoTelefone = new ArrayList<>();
+        TelefoneTipoDAO objdao = new TelefoneTipoDAO();
+        ResultSet rstipotelefone = objdao.listaTodos();
+
+        try {
+            while (rstipotelefone.next()) {
+                TelefoneTipomodel gs = new TelefoneTipomodel();
+                gs.setCodtipotel(rstipotelefone.getInt("codtipotel"));
+                gs.setNometipotel(rstipotelefone.getString("nometipotel"));
+                
+
+                tipoTelefone.add(gs);
+            }
+            return tipoTelefone;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteCTR.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
      public void InseretelCTR(String tipos)
     {
         // Cria um objeto da MODEL

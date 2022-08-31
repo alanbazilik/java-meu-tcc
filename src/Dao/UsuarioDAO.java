@@ -75,8 +75,6 @@ public class UsuarioDAO {
                pgsql.setString(2, gs.getSenha_usuario());
             rs = pgsql.executeQuery();
             if(rs.next()){
-  JOptionPane.showMessageDialog(null,"login correto","correto", JOptionPane.INFORMATION_MESSAGE);
-                
       Tela_principal objtel = new Tela_principal();
       objtel.setVisible(true);
       
